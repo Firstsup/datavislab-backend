@@ -1,33 +1,25 @@
-let util = require('../../utils/util')
-let userModel = require('../../models/user')
+const util = require('../../utils/util')
+const userModel = require('../../models/user')
+const md5 = require('md5')
 
 module.exports = async (req, res) => {
     const data = req.query
     try {
-        await new Promise(((resolve, reject) => {
-            userModel
-                .find({
-                    username: data.username
-                })
-                .then(result => {
-                    if (!result[0]) {
-                        reject(1)
-                    } else {
-                        if (result[0].password === data.password) {
-                            console.log('success')
-                            resolve()
-                        } else {
-                            reject(2)
-                        }
-                    }
-                })
-        }))
-        util.responseClient(res, 200, 0, '成功', {})
-    } catch (e) {
-        if (e === 1) {
+        const result = await userModel.find({
+            username: data.username
+        })
+        if (!result[0]) {
             util.responseClient(res, 500, 2, '用户名不存在', {})
+            console.log('e:', '用户名不存在')
         } else {
-            util.responseClient(res, 500, 3, '密码错误', {})
+            if (result[0].password === md5(data.password)) {
+                util.responseClient(res, 200, 0, '成功', {})
+            } else {
+                util.responseClient(res, 500, 3, '密码错误', {})
+                console.log('e:', '密码错误')
+            }
         }
+    } catch (e) {
+        console.log('e:', e)
     }
 }

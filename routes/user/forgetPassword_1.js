@@ -1,22 +1,17 @@
-let util = require('../../utils/util')
-let userModel = require('../../models/user')
+const util = require('../../utils/util')
+const userModel = require('../../models/user')
 
 module.exports = async (req, res) => {
     const data = req.query
     try {
-        await new Promise(((resolve, reject) => {
-            userModel
-                .find(data)
-                .then(result => {
-                    if (result[0]) {
-                        resolve()
-                    } else {
-                        reject()
-                    }
-                })
-        }))
-        util.responseClient(res, 200, 0, '成功', {})
+        const result = await userModel.find(data)
+        if (result[0]) {
+            util.responseClient(res, 200, 0, '成功', {})
+        } else {
+            util.responseClient(res, 500, 2, '邮箱不存在', {})
+            console.log('e:','邮箱不存在')
+        }
     } catch (e) {
-        util.responseClient(res, 500, 2, '邮箱不存在', {})
+        console.log('e:', e)
     }
 }
