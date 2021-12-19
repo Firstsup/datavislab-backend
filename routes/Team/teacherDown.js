@@ -1,18 +1,18 @@
 const util = require('../../utils/util')
-const newsModel = require('../../models/news')
+const teacherModel = require('../../models/teacher')
 
 module.exports = async (req, res) => {
     const data = req.query
     try {
-        const exchange = await newsModel.find({
-            id: {$gt: data.id}
-        }).sort({'id': 1}).limit(1)
-        const result1 = await newsModel.updateOne({
+        const exchange = await teacherModel.find({
+            id: {$lt: data.id}
+        }).sort({'id': -1}).limit(1)
+        const result1 = await teacherModel.updateOne({
             id: data.id
         }, {
             id: exchange[0].id
         })
-        const result2 = await newsModel.updateOne({
+        const result2 = await teacherModel.updateOne({
             id: exchange[0].id
         }, {
             id: data.id

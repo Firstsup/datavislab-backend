@@ -1,17 +1,17 @@
 const util = require('../../utils/util')
-const teamModel = require('../../models/team')
+const prizeModel = require('../../models/prize')
 
 module.exports = async (req, res) => {
+    const data = req.query
     try {
-        const result = await teamModel.find({})
-        console.log(result)
-        if (!result[0]) {
+        const result = await prizeModel.deleteOne({
+            id: data.id
+        })
+        if (result.deletedCount === 0) {
             util.responseClient(res, 500, 1, '数据库出错', {})
             console.log('e:', '数据库出错')
         } else {
-            util.responseClient(res, 200, 0, '成功', {
-                team: result
-            })
+            util.responseClient(res, 200, 0, '成功', {})
         }
     } catch (e) {
         console.log('e:', e)

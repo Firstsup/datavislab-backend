@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const {Schema} = require("mongoose");
 
 const newsSchema = new Schema({
-    id: {type: String, require: true},
+    id: {type: Number, require: true},
     date: {type: String, require: true},
     title: {type: String, require: true},
     content: {type: Array, require: true},
