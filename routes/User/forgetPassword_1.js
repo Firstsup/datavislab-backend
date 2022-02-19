@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const userModel = require('../../models/user')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await userModel.find(data)
         if (result[0]) {

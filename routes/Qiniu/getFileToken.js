@@ -5,10 +5,11 @@ const secretKey = 'Lovc5vbYybR0YsXD7M_Hvrmn4TdNOVpKF1hNqSpS'
 const mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
 
 module.exports = (req, res) => {
-    var options = {
-        scope: 'datavislab-file',
+    const keyToOverwrite = req.query.name;
+    const options = {
+        scope: 'datavislab-file' + ':' + keyToOverwrite,
     };
-    var putPolicy = new qiniu.rs.PutPolicy(options);
-    var uploadToken = putPolicy.uploadToken(mac);
+    const putPolicy = new qiniu.rs.PutPolicy(options);
+    const uploadToken = putPolicy.uploadToken(mac);
     util.responseClient(res, 200, 0, '成功', {uploadToken: uploadToken})
 }

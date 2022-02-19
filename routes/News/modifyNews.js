@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const newsModel = require('../../models/news')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.news
     try {
         const result = await newsModel.updateOne({
             id: data.id

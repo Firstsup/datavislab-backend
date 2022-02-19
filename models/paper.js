@@ -5,7 +5,8 @@ const paperSchema = new Schema({
     id: {type: Number, required: true},
     title: {type: String, require: true},
     venue: {type: String, require: true},
-    file: {type: String}
+    file: {type: String},
+    fileOriName: {type: String}
 })
 
 module.exports = mongoose.model('paper', paperSchema, 'paper')

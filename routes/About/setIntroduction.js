@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const aboutModel = require('../../models/about')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await aboutModel.updateOne({
             item: 'introduction'

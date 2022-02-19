@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const teacherModel = require('../../models/teacher')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const exchange = await teacherModel.find({
             id: {$gt: data.id}
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
             id: exchange[0].id
         })
         const result2 = await teacherModel.updateOne({
-            id: exchange[0].id
+            name: exchange[0].name
         }, {
             id: data.id
         })

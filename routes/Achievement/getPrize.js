@@ -3,8 +3,7 @@ const prizeModel = require('../../models/prize')
 
 module.exports = async (req, res) => {
     try {
-        const result = await prizeModel.find({})
-        console.log(result)
+        const result = await prizeModel.find({}).sort({'id': -1})
         if (!result[0]) {
             util.responseClient(res, 500, 1, '数据库出错', {})
             console.log('e:', '数据库出错')

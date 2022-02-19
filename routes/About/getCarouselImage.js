@@ -6,9 +6,10 @@ module.exports = async (req, res) => {
         const result = await aboutModel.find({
             item: {$regex: /^carouselImage/}
         })
+        result.sort()
         if (result[0]) {
             util.responseClient(res, 200, 0, '成功', {
-                url: [result[0].content, result[1].content, result[2].content]
+                name: [result[0].content, result[1].content, result[2].content]
             })
         } else {
             util.responseClient(res, 500, 1, '数据库出错', {})

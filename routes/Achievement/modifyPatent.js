@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const patentModel = require('../../models/patent')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.patent
     try {
         const result = await patentModel.updateOne({
             id: data.id

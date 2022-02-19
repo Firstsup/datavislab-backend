@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const teacherModel = require('../../models/teacher')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await teacherModel.deleteOne({
             id: data.id

@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const paperModel = require('../../models/paper')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const exchange = await paperModel.find({
             id: {$gt: data.id}
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
             id: exchange[0].id
         })
         const result2 = await paperModel.updateOne({
-            id: exchange[0].id
+            title: exchange[0].title
         }, {
             id: data.id
         })

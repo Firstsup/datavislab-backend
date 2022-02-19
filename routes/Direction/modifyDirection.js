@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const directionModel = require('../../models/direction')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.direction
     try {
         const result = await directionModel.updateOne({
             id: data.id

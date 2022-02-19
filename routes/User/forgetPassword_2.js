@@ -3,7 +3,7 @@ const userModel = require('../../models/user')
 const md5 = require("md5");
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await userModel.updateOne({
             email: data.email

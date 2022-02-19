@@ -3,8 +3,7 @@ const patentModel = require('../../models/patent')
 
 module.exports = async (req, res) => {
     try {
-        const result = await patentModel.find({})
-        console.log(result)
+        const result = await patentModel.find({}).sort({'id': -1})
         if (!result[0]) {
             util.responseClient(res, 500, 1, '数据库出错', {})
             console.log('e:', '数据库出错')

@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const directionModel = require('../../models/direction')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.item
     try {
         const maxid = await directionModel.find({}).sort({'id': -1}).limit(1)
         const result = await directionModel.create({

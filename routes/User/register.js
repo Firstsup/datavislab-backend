@@ -3,27 +3,12 @@ const userModel = require('../../models/user')
 const md5 = require('md5')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.user
     try {
-        let result = await userModel.find({
-            username: data.username
-        })
-        if (result[0]) {
-            util.responseClient(res, 500, 2, '用户名已存在', {})
-            console.log('e:', '用户名已存在')
-            return
-        }
-        result = await userModel.find({
-            email: data.email
-        })
-        if (result[0]) {
-            util.responseClient(res, 500, 3, '邮箱已被使用', {})
-            console.log('e:', '邮箱已被使用')
-            return
-        }
-        result = await userModel.create({
+        let result = await userModel.create({
             username: data.username,
             password: md5(data.password),
+            name: data.name,
             email: data.email
         })
         if (result) {

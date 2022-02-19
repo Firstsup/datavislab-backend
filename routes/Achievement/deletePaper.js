@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const paperModel = require('../../models/paper')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await paperModel.deleteOne({
             id: data.id

@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const newsModel = require('../../models/news')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const result = await newsModel.deleteOne({
             id: data.id

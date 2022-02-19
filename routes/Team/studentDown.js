@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const studentModel = require('../../models/student')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body
     try {
         const exchange = await studentModel.find({
             id: {$lt: data.id}
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
             id: exchange[0].id
         })
         const result2 = await studentModel.updateOne({
-            id: exchange[0].id
+            name: exchange[0].name
         }, {
             id: data.id
         })

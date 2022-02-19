@@ -2,7 +2,7 @@ const util = require('../../utils/util')
 const studentModel = require('../../models/student')
 
 module.exports = async (req, res) => {
-    const data = req.query
+    const data = req.body.item
     try {
         const maxid = await studentModel.find({}).sort({'id': -1}).limit(1)
         const result = await studentModel.create({

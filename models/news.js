@@ -3,7 +3,7 @@ const {Schema} = require("mongoose");
 
 const newsSchema = new Schema({
     id: {type: Number, require: true},
-    date: {type: String, require: true},
+    date: {type: Number, require: true},
     title: {type: String, require: true},
     content: {type: Array, require: true},
     cover: {type: String, require: true},
